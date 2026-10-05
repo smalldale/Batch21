@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FooBar", "FooBar\FooBar.csproj", "{575A2DAF-9CEE-495A-9AA0-2CAAD210A448}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queue", "Queue\Queue.csproj", "{20038B69-66E7-41B1-8B6C-E02CCD6588EB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{575A2DAF-9CEE-495A-9AA0-2CAAD210A448}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{575A2DAF-9CEE-495A-9AA0-2CAAD210A448}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{575A2DAF-9CEE-495A-9AA0-2CAAD210A448}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20038B69-66E7-41B1-8B6C-E02CCD6588EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20038B69-66E7-41B1-8B6C-E02CCD6588EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20038B69-66E7-41B1-8B6C-E02CCD6588EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20038B69-66E7-41B1-8B6C-E02CCD6588EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
