@@ -1,16 +1,27 @@
-﻿Queue<string> queueList = new();
+﻿Queue<string> queues = new();
+Queue<string> vipQueues = new();
 
-void Enqueued(string val)
+void Enqueue(string val)
 {
-    queueList.Enqueue(val);
+    queues.Enqueue(val);
     System.Console.WriteLine($"Queued {val}");
+}
+
+void EnqueueVip(string val)
+{
+    vipQueues.Enqueue(val);
+    System.Console.WriteLine($"VIP Queued {val}");
 }
 
 void Process()
 {
-    if (queueList.Count() > 0)
+    if (vipQueues.Count() > 0)
     {
-        System.Console.WriteLine($"Processed {queueList.Dequeue()}");
+        System.Console.WriteLine($"Processed {vipQueues.Dequeue()}");
+    }
+    else if (queues.Count() > 0)
+    {
+        System.Console.WriteLine($"Processed {queues.Dequeue()}");
     }
     else
     {
@@ -18,8 +29,9 @@ void Process()
     }
 }
 
-Enqueued("A");
-Enqueued("B");
+Enqueue("A");
+Enqueue("B");
+EnqueueVip("C");
 Process();
 Process();
 Process();
