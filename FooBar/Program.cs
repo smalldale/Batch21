@@ -1,23 +1,27 @@
-﻿static void Generate(int count)
+﻿using System.Text;
+
+static void Generate(int count)
     {
         for (int i = 1; i <= count; i++)
         {
-            if (i % 3 == 0 && i % 5 == 0)
+            StringBuilder text = new StringBuilder();
+            if (i % 3 == 0)
             {
-                System.Console.Write("foobar");
+                text.Append("foo");
             }
-            else if (i % 3 == 0)
+            if (i % 5 == 0)
             {
-                System.Console.Write("foo");
+                text.Append("bar");
             }
-            else if (i % 5 == 0)
+            if (i % 7 == 0)
             {
-                System.Console.Write("bar");
+                text.Append("jazz");
             }
-            else
+            if (text.ToString() == "")
             {
-                System.Console.Write(i);
+                text.Append($"{i}");
             }
+            System.Console.Write(text.ToString());
             if (i < count)
             {
                 System.Console.Write(", ");
@@ -25,4 +29,4 @@
         }
     } 
 
-Generate(15);
+Generate(105);
