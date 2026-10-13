@@ -1,9 +1,15 @@
-﻿Stack<string> stack = new();
+﻿int n = 3;
+Stack<string> stack = new();
 
 void Type(string word)
 {
+    if (stack.Count + 1 > n)
+    {
+        stack = new(stack.ToArray()[..(n-1)].Reverse());
+        System.Console.Write("Dropped bottom, ");
+    }
     stack.Push(word);
-    System.Console.WriteLine($"Typed {stack.Peek()}");
+    System.Console.Write($"Typed {stack.Peek()}\n");
 }
 
 void Undo()
@@ -14,7 +20,11 @@ void Undo()
     }
 }
 
-Type("foo");
-Type("bar");
+Type("A");
+Type("B");
+Type("C");
+Type("D");
+Undo();
+Undo();
 Undo();
 Undo();
