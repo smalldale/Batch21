@@ -9,14 +9,16 @@ void Log(int val)
     if (count < n)
     {
         buffer[head] = val;
-        head = head+1 == n ? 0: head+1;
+        head = (head+1)%n;
         count++;
         System.Console.WriteLine($"Logged {val}");
     }
     else
     {
-        System.Console.WriteLine("Buffer Full");
-
+        buffer[head] = val;
+        System.Console.WriteLine($"Overwritten oldest with {val}");
+        head = (head+1)%n;
+        tail = (tail+1)%n;
     }
 }
 
@@ -25,7 +27,7 @@ void Read()
     if (count != 0){
         int? val = buffer[tail];
         buffer[tail] = null;
-        tail = tail+1 == n ? 0: tail+1;
+        tail = (tail+1)%n;
         count--;
         System.Console.WriteLine($"Read {val}");
     }
