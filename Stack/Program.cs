@@ -1,30 +1,50 @@
 ﻿int n = 3;
 Stack<string> stack = new();
+Stack<string> redoStack = new();
 
 void Type(string word)
 {
     if (stack.Count + 1 > n)
     {
         stack = new(stack.ToArray()[..(n-1)].Reverse());
-        System.Console.Write("Dropped bottom, ");
+        Console.Write("Dropped bottom, ");
     }
     stack.Push(word);
-    System.Console.Write($"Typed {stack.Peek()}\n");
+    redoStack.Clear();
+    Console.Write($"Typed {stack.Peek()}\n");
 }
 
 void Undo()
 {
     if (stack.Count > 0)
     {
-        System.Console.WriteLine($"Undid {stack.Pop()}");
+        string redoWord = stack.Pop();
+        redoStack.Push(redoWord);
+        Console.WriteLine($"Undid {redoWord}");
+    }
+}
+
+void Redo()
+{
+    if (redoStack.Count > 0)
+    {
+        stack.Push(redoStack.Pop());
+        Console.Write($"Redid {stack.Peek()}\n");
+    }
+    else
+    {
+        Console.WriteLine("Empty Redo Stack.");
     }
 }
 
 Type("A");
 Type("B");
-Type("C");
-Type("D");
 Undo();
+Redo();
+Type("C");
+Undo();
+Type("D");
+Redo();
 Undo();
 Undo();
 Undo();
