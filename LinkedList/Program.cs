@@ -4,8 +4,20 @@ LinkedList<int> linkedValues = new();
 
 void Append(int val)
 {
-    linkedValues.AddLast(val);
-    System.Console.WriteLine($"Appended {val}");
+    LinkedListNode<int>? current = linkedValues.First;
+    while (current != null && current.Value < val)
+    {
+        current = current.Next;
+    }
+    if (current == null)
+    {
+        linkedValues.AddLast(val);
+    }
+    else
+    {
+        linkedValues.AddBefore(current, val);
+    }
+    Console.WriteLine($"Appended {val}");
 }
 
 void Print()
@@ -18,7 +30,7 @@ void Print()
         current = current.Next;
         text.Append($" -> {current.Value}");
     }
-    System.Console.WriteLine(text.ToString());
+    Console.WriteLine(text.ToString());
 }
 
 void PrintReverse()
@@ -31,13 +43,11 @@ void PrintReverse()
         current = current.Previous;
         text.Append($" -> {current.Value}");
     }
-    System.Console.WriteLine(text.ToString());
+    Console.WriteLine(text.ToString());
 }
 
 Append(5);
-Append(10);
-Append(15);
-// LinkedListNode<int>? current = linkedValues.Find(10);
-// linkedValues.AddBefore(current, 8);
+Append(2);
+Append(8);
 Print();
 PrintReverse();
