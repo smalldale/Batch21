@@ -1,24 +1,34 @@
-﻿int n = 3;
+﻿int capacity = 3;
+double warningThreshold = 0.66;
+double criticalThreshold = 1.0;
 int head = 0;
 int tail = 0;
 int count = 0;
-int?[] buffer = new int?[n];
+int?[] buffer = new int?[capacity];
 
 void Log(int val)
 {
-    if (count < n)
+    if (count < capacity)
     {
         buffer[head] = val;
-        head = (head+1)%n;
+        head = (head+1)%capacity;
         count++;
-        System.Console.WriteLine($"Logged {val}");
+        Console.WriteLine($"Logged {val}");
+        if (count >= capacity * criticalThreshold)
+        {
+            Console.WriteLine("Critical: Buffer Full");
+        }
+        else if (count >= capacity * warningThreshold)
+        {
+            Console.WriteLine("Warning: Buffer at 66%");
+        }
     }
     else
     {
         buffer[head] = val;
-        System.Console.WriteLine($"Overwritten oldest with {val}");
-        head = (head+1)%n;
-        tail = (tail+1)%n;
+        Console.WriteLine($"Overwritten oldest with {val}");
+        head = (head+1)%capacity;
+        tail = (tail+1)%capacity;
     }
 }
 
@@ -27,13 +37,13 @@ void Read()
     if (count != 0){
         int? val = buffer[tail];
         buffer[tail] = null;
-        tail = (tail+1)%n;
+        tail = (tail+1)%capacity;
         count--;
-        System.Console.WriteLine($"Read {val}");
+        Console.WriteLine($"Read {val}");
     }
     else
     {
-        System.Console.WriteLine("Buffer Empty");
+        Console.WriteLine("Buffer Empty");
     }
 }
 
