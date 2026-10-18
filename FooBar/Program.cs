@@ -1,30 +1,33 @@
 ﻿using System.Text;
 
+
 static void Generate(int count)
     {
+        List<(int Divisor, string Word)> modRules = [
+            (3, "foo"),
+            (4, "baz"),
+            (5, "bar"),
+            (7, "jazz"),
+            (9, "huzz"),
+        ];
         for (int i = 1; i <= count; i++)
         {
             StringBuilder text = new StringBuilder();
-            if (i % 3 == 0)
+            foreach ((int Divisor, string Word) rule in modRules)
             {
-                text.Append("foo");
-            }
-            if (i % 5 == 0)
-            {
-                text.Append("bar");
-            }
-            if (i % 7 == 0)
-            {
-                text.Append("jazz");
+                if (i % rule.Divisor == 0)
+                {
+                    text.Append(rule.Word);
+                }
             }
             if (text.ToString() == "")
             {
                 text.Append($"{i}");
             }
-            System.Console.Write(text.ToString());
+            Console.Write(text.ToString());
             if (i < count)
             {
-                System.Console.Write(", ");
+                Console.Write(", ");
             }
         }
     } 
