@@ -1,37 +1,28 @@
-﻿Queue<string> queues = new();
-Queue<string> vipQueues = new();
+﻿List<(string Val, int Priority)> queues = [];
 
-void Enqueue(string val)
+void Enqueue(string val, int priority)
 {
-    queues.Enqueue(val);
-    System.Console.WriteLine($"Queued {val}");
-}
-
-void EnqueueVip(string val)
-{
-    vipQueues.Enqueue(val);
-    System.Console.WriteLine($"VIP Queued {val}");
+    queues.Add((val, priority));
+    queues.Sort((a, b) => b.Priority.CompareTo(a.Priority));
+    Console.WriteLine($"Queued {val} with priority {priority}");
 }
 
 void Process()
 {
-    if (vipQueues.Count() > 0)
+    if (queues.Count > 0)
     {
-        System.Console.WriteLine($"Processed {vipQueues.Dequeue()}");
-    }
-    else if (queues.Count() > 0)
-    {
-        System.Console.WriteLine($"Processed {queues.Dequeue()}");
+        Console.WriteLine($"Processed {queues[0].Val}");
+        queues.RemoveAt(0);
     }
     else
     {
-        System.Console.WriteLine("Queue is empty");
+        Console.WriteLine("Queue is empty");
     }
 }
 
-Enqueue("A");
-Enqueue("B");
-EnqueueVip("C");
+Enqueue("A", 1);
+Enqueue("B", 5);
+Enqueue("C", 5);
 Process();
 Process();
 Process();
