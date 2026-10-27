@@ -1,4 +1,4 @@
-﻿Queue queue = new();
+﻿CustomQueue queue = new();
 
 queue.AddRule("urgent", 10);
 queue.AddRule("normal", 5);
