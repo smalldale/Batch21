@@ -26,7 +26,6 @@ public class CustomLinkedList
                 }
             }
             tempList.Sort((a, b) => _sorting(a, b));
-            tempList.Reverse();
             return new LinkedList<int>(tempList);
         }
         return _linkedValues;
