@@ -1,20 +1,26 @@
 public class CircularQueue
 {
-    private const int _capacity = 3;
+    private int _capacity = 3;
     private const double _warningThreshold = 0.66;
     private const double _criticalThreshold = 1.0;
     private int _head = 0;
     private int _tail = 0;
     private int _count = 0;
-    private int?[] _buffer = new int?[_capacity];
-    private bool _overwrite = false;
+    private int?[] _buffer;
+    private bool _overwrite = true;
+
+    public CircularQueue()
+    {
+        _buffer = new int?[_capacity];
+    }
 
     /// <summary>
     /// Sets the buffer capacity. Resets existing data.
     /// </summary>
     public void SetCapacity(int n)
     {
-        _buffer = new int?[n];
+        _capacity = n;
+        _buffer = new int?[_capacity];
         _head = 0;
         _tail = 0;
         _count = 0;
@@ -29,7 +35,7 @@ public class CircularQueue
         _overwrite = isOverwriteEnabled;
     }
 
-    void Log(int val)
+    public void Log(int val)
     {
         if (_count < _capacity)
         {
@@ -62,7 +68,7 @@ public class CircularQueue
         }
     }
 
-    void Read()
+    public void Read()
     {
         if (_count != 0)
         {
