@@ -11,7 +11,7 @@ void Log(int val)
     if (count < capacity)
     {
         buffer[head] = val;
-        head = (head+1)%capacity;
+        head = (head + 1) % capacity;
         count++;
         Console.WriteLine($"Logged {val}");
         if (count >= capacity * criticalThreshold)
@@ -27,17 +27,18 @@ void Log(int val)
     {
         buffer[head] = val;
         Console.WriteLine($"Overwritten oldest with {val}");
-        head = (head+1)%capacity;
-        tail = (tail+1)%capacity;
+        head = (head + 1) % capacity;
+        tail = (tail + 1) % capacity;
     }
 }
 
 void Read()
 {
-    if (count != 0){
+    if (count != 0)
+    {
         int? val = buffer[tail];
         buffer[tail] = null;
-        tail = (tail+1)%capacity;
+        tail = (tail + 1) % capacity;
         count--;
         Console.WriteLine($"Read {val}");
     }
@@ -46,6 +47,8 @@ void Read()
         Console.WriteLine("Buffer Empty");
     }
 }
+
+
 
 Log(1);
 Log(2);
